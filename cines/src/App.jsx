@@ -1,35 +1,66 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
-function App() {
-  const [count, setCount] = useState(0)
+import Navbar from './components/Navbar';
+import CinesList from './components/CinesList';
+import PeliculasList from './components/PeliculasList';
+import Cartelera from './components/Cartelera';
 
-  return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+class ErrorBoundary extends React.Component {
+  state = { hasError: false, error: null };
+
+  static getDerivedStateFromError(error) {
+    return { hasError: true, error };
+  }
+
+  componentDidCatch(error, errorInfo) {
+    console.error("Error capturado:", error, errorInfo);
+  }
+
+  render() {
+    if (this.state.hasError) {
+      return (
+        <div className="alert alert-danger m-4">
+          <h2>Algo salió mal</h2>
+          <p>{this.state.error.message}</p>
+          <button 
+            className="btn btn-primary"
+            onClick={() => window.location.reload()}
+          >
+            Recargar
+          </button>
+        </div>
+      );
+    }
+    return this.props.children;
+  }
 }
 
-export default App
+function App() {
+  return (
+    <Router>
+      <ErrorBoundary>
+        <div className="App">
+          <Navbar />
+          <div className="container mt-3">
+            <Routes>
+              <Route path="/cines" element={<CinesList />} />
+              <Route path="/peliculas" element={<PeliculasList />} />
+              <Route path="/cartelera" element={<Cartelera />} />
+              <Route path="/" element={<Home />} />
+            </Routes>
+          </div>
+        </div>
+      </ErrorBoundary>
+    </Router>
+  );
+}
+
+const Home = () => (
+  <div className="text-center">
+    <h2>Bienvenido a CineApp</h2>
+    <p>Selecciona una opción del menú</p>
+  </div>
+);
+
+export default App;
