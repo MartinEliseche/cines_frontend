@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import Home from './components/Home';
 import Navbar from './components/Navbar';
+import Footer from './components/Footer';
 
 import CinesList from './components/Cine/CinesList';
 import Cine from './components/Cine/Cine';
@@ -12,6 +13,7 @@ import CineCreate from './components/Cine/CineCreate';
 import PeliculasList from './components/Pelicula/PeliculasList';
 import Pelicula from './components/Pelicula/Pelicula';
 import PeliculaEdit from './components/Pelicula/PeliculaEdit';
+import PeliculaCreate from './components/Pelicula/PeliculaCreate';
 
 import Cartelera from './components/Cartelera';
 
@@ -51,7 +53,7 @@ function App() {
       <ErrorBoundary>
         <div className="App">
           <Navbar />
-          <div className="container mt-3">
+          <main className="container mt-3">
             <Routes>
               <Route path="/cines" element={<CinesList />} />
               <Route path="/cines/:id" element={<Cine />} />
@@ -61,11 +63,13 @@ function App() {
               <Route path="/peliculas" element={<PeliculasList />} />
               <Route path="/peliculas/:id" element={<Pelicula />} />
               <Route path="/peliculas/edit/:id" element={<PeliculaEdit />} />
+              <Route path="/peliculas/create" element={<PeliculaCreate />} />
 
               <Route path="/cartelera" element={<Cartelera />} />
               <Route path="/" element={<Home />} />
             </Routes>
-          </div>
+          </main>
+          <Footer />
         </div>
       </ErrorBoundary>
     </Router>

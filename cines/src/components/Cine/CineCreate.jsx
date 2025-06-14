@@ -103,7 +103,7 @@ const CineCreate = () => {
           </button>
 
           <button type="submit" className="btn btn-primary" disabled={loading}>
-            <i className="bi bi-plus-lg me-2"></i>
+            <i className="bi bi-plus-circle me-2"></i>
             {loading ? 'Creando...' : 'Crear Cine'}
           </button>
         </div>
