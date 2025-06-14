@@ -13,7 +13,6 @@ const Cartelera = () => {
         setProyecciones(response.data);
       } catch (err) {
         setError(err.message);
-        console.error("Error fetching proyecciones:", err);
       } finally {
         setLoading(false);
       }
@@ -37,29 +36,35 @@ const Cartelera = () => {
   );
 
   return (
-    <div className="container mt-4">
-      <h2 className="mb-4">🎥 Cartelera de Cines</h2>
-      
-      <div className="row row-cols-1 row-cols-md-2 g-4">
-        {proyecciones.map((proyeccion) => (
-          <div key={proyeccion.id} className="col">
-            <div className="card h-100 shadow-sm">
-              <div className="card-body">
-                <h5 className="card-title text-primary">{proyeccion.pelicula}</h5>
-                <p className="card-text">
-                  <span className="badge bg-secondary me-2">Cine</span>
-                  {proyeccion.cine}
-                </p>
-              </div>
-              <div className="card-footer bg-transparent">
-                <small className="text-muted">
-                  Disponible en este cine
-                </small>
-              </div>
-            </div>
+    <div className="container mt-5">
+      <h2 className="mb-4 text-center text-light">Cartelera</h2>
+
+      {proyecciones.length > 0 ? (
+        <div className="row justify-content-center">
+          <div className="col-md-10">
+            <table className="table table-bordered table-dark text-start align-middle">
+              <thead>
+                <tr>
+                  <th style={{ width: '5%' }}>#</th>
+                  <th style={{ width: '45%' }}>Película</th>
+                  <th style={{ width: '50%' }}>Cine</th>
+                </tr>
+              </thead>
+              <tbody>
+                {proyecciones.map((p, index) => (
+                  <tr key={p.id}>
+                    <td>{index + 1}</td>
+                    <td>{p.pelicula}</td>
+                    <td>{p.cine}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
-        ))}
-      </div>
+        </div>
+      ) : (
+        <div className="alert alert-info text-center">No hay funciones disponibles</div>
+      )}
     </div>
   );
 };

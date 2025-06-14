@@ -11,20 +11,36 @@ const PeliculasList = () => {
   }, []);
 
   return (
-    <div className="container mt-4">
-      <h2>Películas</h2>
-      <div className="row">
-        {peliculas.map(pelicula => (
-          <div key={pelicula.id} className="col-md-4 mb-3">
-            <div className="card">
-              <div className="card-body">
-                <h5 className="card-title">{pelicula.titulo}</h5>
-                <p className="card-text">{pelicula.genero}</p>
-              </div>
+    <div className="container mt-5">
+      <h2 className="text-light mb-4 text-center">Películas</h2>
+      {peliculas.length > 0 ? (
+        <div className="row justify-content-center">
+          <div className="col-md-9">
+            <div className="table-responsive">
+              <table className="table table-dark table-striped table-bordered align-middle">
+                <thead>
+                  <tr>
+                    <th style={{ width: '5%' }}>#</th>
+                    <th style={{ width: '45%' }}>Título</th>
+                    <th style={{ width: '50%' }}>Género</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {peliculas.map((pelicula, index) => (
+                    <tr key={pelicula.id}>
+                      <td>{index + 1}</td>
+                      <td>{pelicula.titulo}</td>
+                      <td>{pelicula.genero}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
             </div>
           </div>
-        ))}
-      </div>
+        </div>
+      ) : (
+        <div className="alert alert-info text-center">No hay películas disponibles</div>
+      )}
     </div>
   );
 };

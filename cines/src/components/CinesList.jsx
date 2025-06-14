@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import api from '../api/axiosConfig'; 
+import api from '../api/axiosConfig';
 
 const CinesList = () => {
   const [cines, setCines] = useState([]);
@@ -27,28 +27,33 @@ const CinesList = () => {
 
   return (
     <div className="container mt-5">
-      <h2 className="mb-4">Listado de Cines</h2>
-      <div className="row">
-        {cines.length > 0 ? (
-          cines.map(cine => (
-            <div key={cine.id} className="col-md-4 mb-4">
-              <div className="card">
-                <div className="card-body">
-                  <h5 className="card-title">{cine.nombre}</h5>
-                  <p className="card-text">
-                    <strong>Dirección:</strong> {cine.direccion}<br />
-                    <strong>Ciudad:</strong> {cine.ciudad}
-                  </p>
-                </div>
-              </div>
-            </div>
-          ))
-        ) : (
-          <div className="col-12">
-            <div className="alert alert-info">No hay cines disponibles</div>
-          </div>
-        )}
-      </div>
+      <h2 className="mb-4 text-light text-center">Cines</h2>
+      {cines.length > 0 ? (
+        <div className="table-responsive">
+          <table className="table table-dark table-striped table-bordered">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Nombre</th>
+                <th>Dirección</th>
+                <th>Ciudad</th>
+              </tr>
+            </thead>
+            <tbody>
+              {cines.map((cine, index) => (
+                <tr key={cine.id}>
+                  <td>{index + 1}</td>
+                  <td>{cine.nombre}</td>
+                  <td>{cine.direccion}</td>
+                  <td>{cine.ciudad}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      ) : (
+        <div className="alert alert-info">No hay cines disponibles</div>
+      )}
     </div>
   );
 };

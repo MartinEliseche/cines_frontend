@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
+import Home from './components/Home';
 import Navbar from './components/Navbar';
 import CinesList from './components/CinesList';
 import PeliculasList from './components/PeliculasList';
@@ -55,12 +56,5 @@ function App() {
     </Router>
   );
 }
-
-const Home = () => (
-  <div className="text-center">
-    <h2>Bienvenido a CineApp</h2>
-    <p>Selecciona una opción del menú</p>
-  </div>
-);
 
 export default App;
