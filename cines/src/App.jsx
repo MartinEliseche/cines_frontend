@@ -3,7 +3,10 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import Home from './components/Home';
 import Navbar from './components/Navbar';
-import CinesList from './components/CinesList';
+import CinesList from './components/Cine/CinesList';
+import Cine from './components/Cine/Cine';
+import CineEdit from './components/Cine/CineEdit';
+
 import PeliculasList from './components/PeliculasList';
 import Cartelera from './components/Cartelera';
 
@@ -46,6 +49,9 @@ function App() {
           <div className="container mt-3">
             <Routes>
               <Route path="/cines" element={<CinesList />} />
+              <Route path="/cines/:id" element={<Cine />} />
+              <Route path="/cines/edit/:id" element={<CineEdit />} />
+
               <Route path="/peliculas" element={<PeliculasList />} />
               <Route path="/cartelera" element={<Cartelera />} />
               <Route path="/" element={<Home />} />
