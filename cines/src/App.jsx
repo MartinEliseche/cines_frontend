@@ -3,12 +3,16 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import Home from './components/Home';
 import Navbar from './components/Navbar';
+
 import CinesList from './components/Cine/CinesList';
 import Cine from './components/Cine/Cine';
 import CineEdit from './components/Cine/CineEdit';
 import CineCreate from './components/Cine/CineCreate';
 
-import PeliculasList from './components/PeliculasList';
+import PeliculasList from './components/Pelicula/PeliculasList';
+import Pelicula from './components/Pelicula/Pelicula';
+import PeliculaEdit from './components/Pelicula/PeliculaEdit';
+
 import Cartelera from './components/Cartelera';
 
 class ErrorBoundary extends React.Component {
@@ -28,7 +32,7 @@ class ErrorBoundary extends React.Component {
         <div className="alert alert-danger m-4">
           <h2>Algo salió mal</h2>
           <p>{this.state.error.message}</p>
-          <button 
+          <button
             className="btn btn-primary"
             onClick={() => window.location.reload()}
           >
@@ -55,6 +59,9 @@ function App() {
               <Route path="/cines/create" element={<CineCreate />} />
 
               <Route path="/peliculas" element={<PeliculasList />} />
+              <Route path="/peliculas/:id" element={<Pelicula />} />
+              <Route path="/peliculas/edit/:id" element={<PeliculaEdit />} />
+
               <Route path="/cartelera" element={<Cartelera />} />
               <Route path="/" element={<Home />} />
             </Routes>
