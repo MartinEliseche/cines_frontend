@@ -31,7 +31,16 @@ const Cine = () => {
       await api.delete(`/api/cines/${id}`);
       navigate('/cines');
     } catch (err) {
-      alert('Error al eliminar cine: ' + err.message);
+      const errorMsg = err.response?.data || err.message;
+
+      if (
+        typeof errorMsg === 'string' &&
+        (errorMsg.toLowerCase().includes('asociado') || errorMsg.toLowerCase().includes('cartelera'))
+      ) {
+        alert('No se puede eliminar el cine porque está asociado a una cartelera.');
+      } else {
+        alert('Error al eliminar cine: ' + errorMsg);
+      }
     }
   };
 

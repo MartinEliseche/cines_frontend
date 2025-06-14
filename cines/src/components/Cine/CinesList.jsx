@@ -6,6 +6,7 @@ const CinesList = () => {
   const [cines, setCines] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [successMessage, setSuccessMessage] = useState('');
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -28,9 +29,21 @@ const CinesList = () => {
 
     try {
       await api.delete(`/api/cines/${id}`);
-      setCines(cines.filter(cine => cine.id !== id));
+      setCines(prev => prev.filter(c => c.id !== id));
+      setSuccessMessage('Cine eliminado exitosamente.');
+
+      setTimeout(() => setSuccessMessage(''), 3000);
     } catch (err) {
-      alert('Error al eliminar cine: ' + err.message);
+      const errorMsg = err.response?.data || err.message;
+
+      if (
+        typeof errorMsg === 'string' &&
+        (errorMsg.toLowerCase().includes('asociado') || errorMsg.toLowerCase().includes('cartelera'))
+      ) {
+        alert('No se puede eliminar el cine porque está asociado a una cartelera.');
+      } else {
+        alert('Error al eliminar cine: ' + errorMsg);
+      }
     }
   };
 
@@ -39,27 +52,42 @@ const CinesList = () => {
 
   return (
     <div className="container mt-5">
-      <h2 className="mb-4 text-light text-center">Cines</h2>
+      <div className="d-flex justify-content-between align-items-center mb-3">
+        <h2 className="mb-0 text-light">Cines</h2>
+        <button
+          className="btn btn-primary"
+          onClick={() => navigate('/cines/create')}
+        >
+          Agregar Cine
+        </button>
+      </div>
+
+      {successMessage && (
+        <div className="alert alert-success text-center w-100" role="alert">
+          {successMessage}
+        </div>
+      )}
+
       {cines.length > 0 ? (
         <div className="table-responsive">
           <table className="table table-dark table-striped table-bordered text-start">
             <thead>
               <tr>
-                <th className="text-center" style={{width: '5%'}}>#</th>
-                <th className="text-center" style={{width: '25%'}}>Nombre</th>
-                <th className="text-center" style={{width: '35%'}}>Dirección</th>
-                <th className="text-center" style={{width: '20%'}}>Ciudad</th>
-                <th className="text-center" style={{width: '15%'}}>Acciones</th>
+                <th className="text-center" style={{ width: '5%' }}>#</th>
+                <th className="text-center" style={{ width: '25%' }}>Nombre</th>
+                <th className="text-center" style={{ width: '35%' }}>Dirección</th>
+                <th className="text-center" style={{ width: '20%' }}>Ciudad</th>
+                <th className="text-center" style={{ width: '15%' }}>Acciones</th>
               </tr>
             </thead>
             <tbody>
-              {cines.map((cine, index) => (
+              {cines.map((cine) => (
                 <tr key={cine.id}>
-                  <td className="text-center">{index + 1}</td>
+                  <td className="text-center">{cine.id}</td>
                   <td>{cine.nombre}</td>
                   <td>{cine.direccion}</td>
                   <td>{cine.ciudad}</td>
-                  <td className='text-center'>
+                  <td className="text-center">
                     <Link to={`/cines/${cine.id}`} className="btn btn-sm btn-outline-primary me-2" title="Ver detalle">
                       <i className="bi bi-eye"></i>
                     </Link>

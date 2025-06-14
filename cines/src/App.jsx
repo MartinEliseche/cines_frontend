@@ -6,6 +6,7 @@ import Navbar from './components/Navbar';
 import CinesList from './components/Cine/CinesList';
 import Cine from './components/Cine/Cine';
 import CineEdit from './components/Cine/CineEdit';
+import CineCreate from './components/Cine/CineCreate';
 
 import PeliculasList from './components/PeliculasList';
 import Cartelera from './components/Cartelera';
@@ -51,6 +52,7 @@ function App() {
               <Route path="/cines" element={<CinesList />} />
               <Route path="/cines/:id" element={<Cine />} />
               <Route path="/cines/edit/:id" element={<CineEdit />} />
+              <Route path="/cines/create" element={<CineCreate />} />
 
               <Route path="/peliculas" element={<PeliculasList />} />
               <Route path="/cartelera" element={<Cartelera />} />
