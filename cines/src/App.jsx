@@ -15,7 +15,11 @@ import Pelicula from './components/Pelicula/Pelicula';
 import PeliculaEdit from './components/Pelicula/PeliculaEdit';
 import PeliculaCreate from './components/Pelicula/PeliculaCreate';
 
-import Cartelera from './components/Cartelera';
+import Cartelera from './components/Cartelera/Cartelera'
+import Funcion from './components/Cartelera/Funcion';
+import FuncionEdit from './components/Cartelera/FuncionEdit';
+import FuncionCreate from './components/Cartelera/FuncionCreate';
+
 
 class ErrorBoundary extends React.Component {
   state = { hasError: false, error: null };
@@ -66,6 +70,10 @@ function App() {
               <Route path="/peliculas/create" element={<PeliculaCreate />} />
 
               <Route path="/cartelera" element={<Cartelera />} />
+              <Route path="/cartelera/:id" element={<Funcion />} />
+              <Route path="/cartelera/edit/:id" element={<FuncionEdit />} />
+              <Route path="/cartelera/create" element={<FuncionCreate />} />
+
               <Route path="/" element={<Home />} />
             </Routes>
           </main>
