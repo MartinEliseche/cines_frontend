@@ -32,7 +32,13 @@
 - Backend en ejecución (ver [documentación del backend](https://github.com/MartinEliseche/cines_backend))
 
 ### Instalación
-1. Clonar el repositorio:
+1. Clonar el Repositorio:
 
-git clone https://github.com/MartinEliseche/cines_frontend.git
-cd cines_frontend
+  git clone https://github.com/MartinEliseche/cines_frontend.git
+  cd cines_frontend
+
+2. Instalar Dependencias
+   npm install
+
+3. Levantar Servidor
+   npm run dev
