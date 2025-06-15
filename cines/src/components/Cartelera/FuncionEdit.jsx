@@ -26,13 +26,20 @@ const FuncionEdit = () => {
         ]);
 
         const funcionData = funcionRes.data;
+        const peliculasData = peliculasRes.data;
+        const cinesData = cinesRes.data;
+
+        setPeliculas(peliculasData);
+        setCines(cinesData);
+
+        const peliculaEncontrada = peliculasData.find(p => p.titulo === funcionData.pelicula);
+        const cineEncontrado = cinesData.find(c => c.nombre === funcionData.cine);
+
         setFuncion({
-          pelicula_id: funcionData.peliculaId || '',
-          cine_id: funcionData.cineId || ''
+          pelicula_id: peliculaEncontrada?.id || '',
+          cine_id: cineEncontrado?.id || ''
         });
 
-        setPeliculas(peliculasRes.data);
-        setCines(cinesRes.data);
       } catch (err) {
         setError("Error al cargar datos: " + err.message);
       } finally {
@@ -47,37 +54,31 @@ const FuncionEdit = () => {
     const { name, value } = e.target;
     setFuncion(prev => ({
       ...prev,
-      [name]: value !== '' ? parseInt(value) : ''
+      [name]: parseInt(value)
     }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const dataToSend = {};
-    if (funcion.pelicula_id) dataToSend.pelicula_id = funcion.pelicula_id;
-    if (funcion.cine_id) dataToSend.cine_id = funcion.cine_id;
-
     try {
-      await api.patch(`/api/pelicines/${id}`, dataToSend);
+      await api.patch(`/api/pelicines/${id}`, {
+        pelicula_id: funcion.pelicula_id,
+        cine_id: funcion.cine_id
+      });
       navigate(`/pelicines/${id}`);
     } catch (err) {
       alert("Error al guardar los cambios: " + err.message);
     }
   };
 
-  if (loading || !peliculas.length || !cines.length)
-    return <div className="text-center mt-5"><div className="spinner-border" role="status"></div></div>;
-  if (error)
-    return <div className="alert alert-danger mt-3">{error}</div>;
+  if (loading) return <div className="text-center mt-5"><div className="spinner-border" role="status"></div></div>;
+  if (error) return <div className="alert alert-danger mt-3">{error}</div>;
 
   return (
     <div className="container mt-5">
       <h2 className="text-light text-center mb-4">Editar Función</h2>
-      <form
-        className="w-50 mx-auto bg-dark p-4 rounded text-light border border-secondary"
-        onSubmit={handleSubmit}
-      >
+      <form className="w-50 mx-auto bg-dark p-4 rounded text-light border border-secondary" onSubmit={handleSubmit}>
         <div className="mb-3">
           <label htmlFor="pelicula_id" className="form-label">Película</label>
           <select
@@ -87,18 +88,12 @@ const FuncionEdit = () => {
             value={funcion.pelicula_id}
             onChange={handleChange}
           >
-            {funcion.pelicula_id && (
-              <option value={funcion.pelicula_id}>
-                {peliculas.find(p => p.id === funcion.pelicula_id)?.titulo || "Película actual"}
+            <option value="">Seleccionar película</option>
+            {peliculas.map(p => (
+              <option key={p.id} value={p.id}>
+                {p.titulo}
               </option>
-            )}
-            {peliculas
-              .filter(p => p.id !== funcion.pelicula_id)
-              .map(p => (
-                <option key={p.id} value={p.id}>
-                  {p.titulo}
-                </option>
-              ))}
+            ))}
           </select>
         </div>
 
@@ -111,18 +106,12 @@ const FuncionEdit = () => {
             value={funcion.cine_id}
             onChange={handleChange}
           >
-            {funcion.cine_id && (
-              <option value={funcion.cine_id}>
-                {cines.find(c => c.id === funcion.cine_id)?.nombre || "Cine actual"}
+            <option value="">Seleccionar cine</option>
+            {cines.map(c => (
+              <option key={c.id} value={c.id}>
+                {c.nombre}
               </option>
-            )}
-            {cines
-              .filter(c => c.id !== funcion.cine_id)
-              .map(c => (
-                <option key={c.id} value={c.id}>
-                  {c.nombre}
-                </option>
-              ))}
+            ))}
           </select>
         </div>
 

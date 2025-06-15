@@ -35,17 +35,17 @@ const Funcion = () => {
     }
   };
 
-  if (loading) 
+  if (loading)
     return (
       <div className="text-center mt-5">
         <div className="spinner-border" role="status" />
       </div>
     );
 
-  if (error) 
+  if (error)
     return <div className="alert alert-danger mt-3">{error}</div>;
 
-  if (!funcion) 
+  if (!funcion)
     return <div className="alert alert-warning mt-3">Función no encontrada</div>;
 
   return (
@@ -67,20 +67,22 @@ const Funcion = () => {
               <td>{funcion.pelicula}</td>
               <td>{funcion.cine}</td>
               <td className="text-center">
-                <button
-                  onClick={() => navigate(`/cartelera/edit/${funcion.id}`)}
-                  className="btn btn-sm btn-outline-warning me-2"
-                  title="Editar"
-                >
-                  <i className="bi bi-pencil"></i>
-                </button>
-                <button
-                  onClick={handleDelete}
-                  className="btn btn-sm btn-outline-danger"
-                  title="Eliminar"
-                >
-                  <i className="bi bi-trash"></i>
-                </button>
+                <div className="d-flex flex-wrap justify-content-center gap-2">
+                  <button
+                    onClick={() => navigate(`/cartelera/edit/${funcion.id}`)}
+                    className="btn btn-sm btn-outline-warning"
+                    title="Editar"
+                  >
+                    <i className="bi bi-pencil"></i>
+                  </button>
+                  <button
+                    onClick={handleDelete}
+                    className="btn btn-sm btn-outline-danger"
+                    title="Eliminar"
+                  >
+                    <i className="bi bi-trash"></i>
+                  </button>
+                </div>
               </td>
             </tr>
           </tbody>

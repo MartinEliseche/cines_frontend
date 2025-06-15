@@ -12,7 +12,7 @@ const Cartelera = () => {
   const fetchProyecciones = async () => {
     try {
       const response = await api.get('/api/pelicines');
-      setProyecciones(response.data);
+      setProyecciones(response.data.sort((a, b) => a.id - b.id));
     } catch (err) {
       setError(err.message);
     } finally {
@@ -76,27 +76,29 @@ const Cartelera = () => {
                   <td>{p.pelicula}</td>
                   <td>{p.cine}</td>
                   <td className="text-center">
-                    <button
-                      onClick={() => navigate(`/cartelera/${p.id}`)}
-                      className="btn btn-sm btn-outline-primary me-2"
-                      title="Ver detalle"
-                    >
-                      <i className="bi bi-eye"></i>
-                    </button>
-                    <button
-                      onClick={() => navigate(`/cartelera/edit/${p.id}`)}
-                      className="btn btn-sm btn-outline-warning me-2"
-                      title="Editar"
-                    >
-                      <i className="bi bi-pencil"></i>
-                    </button>
-                    <button
-                      onClick={() => handleDelete(p.id)}
-                      className="btn btn-sm btn-outline-danger"
-                      title="Eliminar"
-                    >
-                      <i className="bi bi-trash"></i>
-                    </button>
+                    <div className="d-flex flex-wrap justify-content-center gap-2">
+                      <button
+                        onClick={() => navigate(`/cartelera/${p.id}`)}
+                        className="btn btn-sm btn-outline-primary"
+                        title="Ver detalle"
+                      >
+                        <i className="bi bi-eye"></i>
+                      </button>
+                      <button
+                        onClick={() => navigate(`/cartelera/edit/${p.id}`)}
+                        className="btn btn-sm btn-outline-warning"
+                        title="Editar"
+                      >
+                        <i className="bi bi-pencil"></i>
+                      </button>
+                      <button
+                        onClick={() => handleDelete(p.id)}
+                        className="btn btn-sm btn-outline-danger"
+                        title="Eliminar"
+                      >
+                        <i className="bi bi-trash"></i>
+                      </button>
+                    </div>
                   </td>
                 </tr>
               ))}
