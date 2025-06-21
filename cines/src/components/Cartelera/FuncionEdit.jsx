@@ -66,7 +66,7 @@ const FuncionEdit = () => {
         pelicula_id: funcion.pelicula_id,
         cine_id: funcion.cine_id
       });
-      navigate(`/pelicines/${id}`);
+      navigate(`/cartelera/${id}`);
     } catch (err) {
       alert("Error al guardar los cambios: " + err.message);
     }
@@ -123,7 +123,11 @@ const FuncionEdit = () => {
           >
             <i className="bi bi-x-lg me-2"></i>Cancelar
           </button>
-          <button type="submit" className="btn btn-success">
+          <button
+            type="submit"
+            className="btn btn-success"
+            onClick={() => navigate(`/cartelera/${id}`)}
+          >
             <i className="bi bi-save me-2"></i>Guardar cambios
           </button>
         </div>
