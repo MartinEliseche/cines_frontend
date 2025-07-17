@@ -20,7 +20,6 @@ const CineCreate = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Validación simple
     if (!cine.nombre.trim() || !cine.direccion.trim() || !cine.ciudad.trim()) {
       setError('Todos los campos son obligatorios.');
       return;
@@ -30,7 +29,7 @@ const CineCreate = () => {
     setLoading(true);
 
     try {
-      await api.post('/api/cines', {
+      await api.post('/cines', {
         nombre: cine.nombre.trim(),
         direccion: cine.direccion.trim(),
         ciudad: cine.ciudad.trim()

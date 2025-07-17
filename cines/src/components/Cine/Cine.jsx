@@ -12,7 +12,7 @@ const Cine = () => {
   useEffect(() => {
     const fetchCine = async () => {
       try {
-        const response = await api.get(`/api/cines/${id}`);
+        const response = await api.get(`/cines/${id}`);
         setCine(response.data);
       } catch (err) {
         setError(err.message);
@@ -28,7 +28,7 @@ const Cine = () => {
     if (!window.confirm('¿Estás seguro de eliminar este cine?')) return;
 
     try {
-      await api.delete(`/api/cines/${id}`);
+      await api.delete(`/cines/${id}`);
       navigate('/cines');
     } catch (err) {
       const errorMsg = err.response?.data || err.message;

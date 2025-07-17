@@ -16,7 +16,7 @@ const CineEdit = () => {
     useEffect(() => {
         const fetchCine = async () => {
             try {
-                const response = await api.get(`/api/cines/${id}`);
+                const response = await api.get(`/cines/${id}`);
                 setCine(response.data);
             } catch (err) {
                 setError(err.message);
@@ -48,7 +48,7 @@ const CineEdit = () => {
         });
 
         try {
-            await api.patch(`/api/cines/${id}`, dataToSend);
+            await api.patch(`/cines/${id}`, dataToSend);
             navigate(`/cines/${id}`);
         } catch (err) {
             alert("Error al guardar los cambios: " + err.message);
