@@ -12,7 +12,7 @@ const PeliculasList = () => {
   useEffect(() => {
     const fetchPeliculas = async () => {
       try {
-        const response = await api.get('/api/peliculas');
+        const response = await api.get('/peliculas');
         setPeliculas(response.data);
       } catch (err) {
         setError(err.message);
@@ -28,14 +28,14 @@ const PeliculasList = () => {
     if (!window.confirm('¿Estás seguro de eliminar esta película?')) return;
 
     try {
-      await api.delete(`/api/peliculas/${id}`);
+      await api.delete(`/peliculas/${id}`);
       setPeliculas(prev => prev.filter(p => p.id !== id));
       setSuccessMessage('Película eliminada exitosamente.');
 
       setTimeout(() => setSuccessMessage(''), 3000);
     } catch (err) {
       const errorMsg = err.response?.data || err.message;
-      alert('No se puede eliminar la pelicula porque ya está asociada a una cartelera.');
+      alert(`Error al eliminar película: ${errorMsg}`);
     }
   };
 
@@ -74,7 +74,7 @@ const PeliculasList = () => {
               </tr>
             </thead>
             <tbody>
-              {peliculas.map((pelicula, index) => (
+              {peliculas.map((pelicula) => (
                 <tr key={pelicula.id}>
                   <td className="text-center">{pelicula.id}</td>
                   <td>{pelicula.titulo}</td>

@@ -11,7 +11,7 @@ const Cartelera = () => {
 
   const fetchProyecciones = async () => {
     try {
-      const response = await api.get('/api/pelicines');
+      const response = await api.get('/pelicines');
       setProyecciones(response.data.sort((a, b) => a.id - b.id));
     } catch (err) {
       setError(err.message);
@@ -28,11 +28,11 @@ const Cartelera = () => {
     if (!window.confirm('¿Estás seguro de eliminar esta función?')) return;
 
     try {
-      await api.delete(`/api/pelicines/${id}`);
+      await api.delete(`/pelicines/${id}`);
       setProyecciones(prev => prev.filter(p => p.id !== id));
       setSuccessMessage('Función eliminada exitosamente.');
       setTimeout(() => setSuccessMessage(''), 3000);
-    } catch (err) {
+    } catch {
       alert('No se puede eliminar la función porque está en uso o no se encuentra.');
     }
   };

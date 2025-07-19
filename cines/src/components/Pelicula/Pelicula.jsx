@@ -12,7 +12,7 @@ const Pelicula = () => {
     useEffect(() => {
         const fetchPelicula = async () => {
             try {
-                const response = await api.get(`/api/peliculas/${id}`);
+                const response = await api.get(`/peliculas/${id}`);
                 setPelicula(response.data);
             } catch (err) {
                 setError(err.message);
@@ -28,7 +28,7 @@ const Pelicula = () => {
         if (!window.confirm('¿Estás seguro de eliminar esta película?')) return;
 
         try {
-            await api.delete(`/api/peliculas/${id}`);
+            await api.delete(`/peliculas/${id}`);
             navigate('/peliculas');
         } catch (err) {
             const errorMsg = err.response?.data || err.message;

@@ -16,8 +16,8 @@ const FuncionCreate = () => {
     const fetchData = async () => {
       try {
         const [peliculasRes, cinesRes] = await Promise.all([
-          api.get("/api/peliculas"),
-          api.get("/api/cines"),
+          api.get("/peliculas"),
+          api.get("/cines"),
         ]);
         setPeliculas(peliculasRes.data);
         setCines(cinesRes.data);
@@ -38,7 +38,7 @@ const FuncionCreate = () => {
     }
 
     try {
-      await api.post("/api/pelicines", {
+      await api.post("/pelicines", {
         pelicula_id: parseInt(pelicula_id),
         cine_id: parseInt(cine_id),
       });

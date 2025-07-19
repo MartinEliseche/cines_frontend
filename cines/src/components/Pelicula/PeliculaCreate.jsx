@@ -35,7 +35,7 @@ const PeliculaCreate = () => {
     });
 
     try {
-      const response = await api.post(`/api/peliculas`, dataToSend);
+      const response = await api.post(`/peliculas`, dataToSend);
       const newId = response.data?.id;
 
       if (newId) {

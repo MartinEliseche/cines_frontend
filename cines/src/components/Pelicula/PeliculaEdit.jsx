@@ -17,7 +17,7 @@ const Pelicula = () => {
   useEffect(() => {
     const fetchPelicula = async () => {
       try {
-        const response = await api.get(`/api/peliculas/${id}`);
+        const response = await api.get(`/peliculas/${id}`);
         setPelicula(response.data);
       } catch (err) {
         setError(err.message);
@@ -52,7 +52,7 @@ const Pelicula = () => {
     });
 
     try {
-      await api.patch(`/api/peliculas/${id}`, dataToSend);
+      await api.patch(`/peliculas/${id}`, dataToSend);
       navigate(`/peliculas/${id}`);
     } catch (err) {
       alert("Error al guardar los cambios: " + err.message);

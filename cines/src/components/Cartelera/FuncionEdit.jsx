@@ -20,9 +20,9 @@ const FuncionEdit = () => {
     const fetchData = async () => {
       try {
         const [funcionRes, peliculasRes, cinesRes] = await Promise.all([
-          api.get(`/api/pelicines/${id}`),
-          api.get("/api/peliculas"),
-          api.get("/api/cines")
+          api.get(`/pelicines/${id}`),
+          api.get("/peliculas"),
+          api.get("/cines")
         ]);
 
         const funcionData = funcionRes.data;
@@ -62,7 +62,7 @@ const FuncionEdit = () => {
     e.preventDefault();
 
     try {
-      await api.patch(`/api/pelicines/${id}`, {
+      await api.patch(`/pelicines/${id}`, {
         pelicula_id: funcion.pelicula_id,
         cine_id: funcion.cine_id
       });

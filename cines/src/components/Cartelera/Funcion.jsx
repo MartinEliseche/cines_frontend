@@ -12,9 +12,9 @@ const Funcion = () => {
   useEffect(() => {
     const fetchFuncion = async () => {
       try {
-        const response = await api.get(`/api/pelicines/${id}`);
+        const response = await api.get(`/pelicines/${id}`);
         setFuncion(response.data);
-      } catch (err) {
+      } catch {
         setError('No se pudo cargar la función.');
       } finally {
         setLoading(false);
@@ -28,7 +28,7 @@ const Funcion = () => {
     if (!window.confirm('¿Estás seguro de eliminar esta función?')) return;
 
     try {
-      await api.delete(`/api/pelicines/${id}`);
+      await api.delete(`/pelicines/${id}`);
       navigate('/cartelera');
     } catch (err) {
       alert('Error al eliminar función: ' + (err.response?.data || err.message));
