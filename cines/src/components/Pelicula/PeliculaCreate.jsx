@@ -46,7 +46,6 @@ const PeliculaCreate = () => {
     } catch (err) {
       const errMsg = err.response?.data;
       if (typeof errMsg === 'object') {
-
         const messages = Object.values(errMsg).join(' | ');
         setError("Error de validación: " + messages);
       } else {
@@ -60,7 +59,7 @@ const PeliculaCreate = () => {
       <h2 className="text-light text-center mb-4">Crear Película</h2>
       {error && <div className="alert alert-danger mt-3">{error}</div>}
       <form
-        className="w-50 mx-auto bg-dark p-4 rounded text-light border border-secondary"
+        className="w-100 w-md-50 mx-auto bg-dark p-4 rounded text-light border border-secondary"
         onSubmit={handleSubmit}
       >
         <div className="mb-3">

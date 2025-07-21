@@ -65,7 +65,10 @@ const Pelicula = () => {
   return (
     <div className="container mt-5">
       <h2 className="text-light text-center mb-4">Editar Película</h2>
-      <form className="w-50 mx-auto bg-dark p-4 rounded text-light border border-secondary" onSubmit={handleSubmit}>
+      <form
+        className="w-100 w-md-50 mx-auto bg-dark p-4 rounded text-light border border-secondary"
+        onSubmit={handleSubmit}
+      >
         <div className="mb-3">
           <label htmlFor="titulo" className="form-label">Título</label>
           <input

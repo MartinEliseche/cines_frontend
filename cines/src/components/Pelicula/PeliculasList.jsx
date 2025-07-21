@@ -31,7 +31,6 @@ const PeliculasList = () => {
       await api.delete(`/peliculas/${id}`);
       setPeliculas(prev => prev.filter(p => p.id !== id));
       setSuccessMessage('Película eliminada exitosamente.');
-
       setTimeout(() => setSuccessMessage(''), 3000);
     } catch (err) {
       const errorMsg = err.response?.data || err.message;
@@ -39,8 +38,17 @@ const PeliculasList = () => {
     }
   };
 
-  if (loading) return <div className="text-center mt-5"><div className="spinner-border" role="status"></div></div>;
-  if (error) return <div className="alert alert-danger mt-3">Error: {error}</div>;
+  if (loading)
+    return (
+      <div className="text-center mt-5">
+        <div className="spinner-border" role="status"></div>
+      </div>
+    );
+
+  if (error)
+    return (
+      <div className="alert alert-danger mt-3">Error: {error}</div>
+    );
 
   return (
     <div className="container mt-5">
@@ -62,7 +70,7 @@ const PeliculasList = () => {
 
       {peliculas.length > 0 ? (
         <div className="table-responsive">
-          <table className="table table-dark table-striped table-bordered text-start align-middle">
+          <table className="table table-dark table-striped table-bordered text-start align-middle w-100">
             <thead>
               <tr>
                 <th className="text-center" style={{ width: '5%' }}>#</th>
@@ -82,27 +90,29 @@ const PeliculasList = () => {
                   <td className="text-center">{pelicula.duracionMin}</td>
                   <td className="text-center">{pelicula.anio}</td>
                   <td className="text-center">
-                    <button
-                      onClick={() => navigate(`/peliculas/${pelicula.id}`)}
-                      className="btn btn-sm btn-outline-primary me-2"
-                      title="Ver detalle"
-                    >
-                      <i className="bi bi-eye"></i>
-                    </button>
-                    <button
-                      onClick={() => navigate(`/peliculas/edit/${pelicula.id}`)}
-                      className="btn btn-sm btn-outline-warning me-2"
-                      title="Editar"
-                    >
-                      <i className="bi bi-pencil"></i>
-                    </button>
-                    <button
-                      onClick={() => handleDelete(pelicula.id)}
-                      className="btn btn-sm btn-outline-danger"
-                      title="Eliminar"
-                    >
-                      <i className="bi bi-trash"></i>
-                    </button>
+                    <div className="d-flex flex-sm-row flex-column justify-content-center align-items-center">
+                      <button
+                        onClick={() => navigate(`/peliculas/${pelicula.id}`)}
+                        className="btn btn-sm btn-outline-primary mb-2 mb-sm-0 me-sm-2"
+                        title="Ver detalle"
+                      >
+                        <i className="bi bi-eye"></i>
+                      </button>
+                      <button
+                        onClick={() => navigate(`/peliculas/edit/${pelicula.id}`)}
+                        className="btn btn-sm btn-outline-warning mb-2 mb-sm-0 me-sm-2"
+                        title="Editar"
+                      >
+                        <i className="bi bi-pencil"></i>
+                      </button>
+                      <button
+                        onClick={() => handleDelete(pelicula.id)}
+                        className="btn btn-sm btn-outline-danger"
+                        title="Eliminar"
+                      >
+                        <i className="bi bi-trash"></i>
+                      </button>
+                    </div>
                   </td>
                 </tr>
               ))}
