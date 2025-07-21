@@ -72,13 +72,22 @@ const FuncionEdit = () => {
     }
   };
 
-  if (loading) return <div className="text-center mt-5"><div className="spinner-border" role="status"></div></div>;
-  if (error) return <div className="alert alert-danger mt-3">{error}</div>;
+  if (loading)
+    return (
+      <div className="text-center mt-5">
+        <div className="spinner-border" role="status"></div>
+      </div>
+    );
+  if (error)
+    return <div className="alert alert-danger mt-3">{error}</div>;
 
   return (
     <div className="container mt-5">
       <h2 className="text-light text-center mb-4">Editar Función</h2>
-      <form className="w-50 mx-auto bg-dark p-4 rounded text-light border border-secondary" onSubmit={handleSubmit}>
+      <form
+        className="w-100 w-sm-75 w-md-50 mx-auto bg-dark p-4 rounded text-light border border-secondary"
+        onSubmit={handleSubmit}
+      >
         <div className="mb-3">
           <label htmlFor="pelicula_id" className="form-label">Película</label>
           <select
@@ -90,9 +99,7 @@ const FuncionEdit = () => {
           >
             <option value="">Seleccionar película</option>
             {peliculas.map(p => (
-              <option key={p.id} value={p.id}>
-                {p.titulo}
-              </option>
+              <option key={p.id} value={p.id}>{p.titulo}</option>
             ))}
           </select>
         </div>
@@ -108,17 +115,15 @@ const FuncionEdit = () => {
           >
             <option value="">Seleccionar cine</option>
             {cines.map(c => (
-              <option key={c.id} value={c.id}>
-                {c.nombre}
-              </option>
+              <option key={c.id} value={c.id}>{c.nombre}</option>
             ))}
           </select>
         </div>
 
-        <div className="d-flex justify-content-end">
+        <div className="d-flex flex-column flex-sm-row justify-content-end gap-2">
           <button
             type="button"
-            className="btn btn-secondary me-2"
+            className="btn btn-secondary"
             onClick={() => navigate(`/cartelera/${id}`)}
           >
             <i className="bi bi-x-lg me-2"></i>Cancelar
@@ -126,7 +131,6 @@ const FuncionEdit = () => {
           <button
             type="submit"
             className="btn btn-success"
-            onClick={() => navigate(`/cartelera/${id}`)}
           >
             <i className="bi bi-save me-2"></i>Guardar cambios
           </button>

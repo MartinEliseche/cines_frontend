@@ -42,7 +42,7 @@ const Cartelera = () => {
 
   return (
     <div className="container mt-5">
-      <div className="d-flex justify-content-between align-items-center mb-3">
+      <div className="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
         <h2 className="mb-0 text-light">Cartelera</h2>
         <button
           className="btn btn-primary"

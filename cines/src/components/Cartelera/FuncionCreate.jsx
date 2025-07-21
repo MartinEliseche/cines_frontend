@@ -62,7 +62,7 @@ const FuncionCreate = () => {
       <h2 className="text-light text-center mb-4">Crear Función</h2>
       <form
         onSubmit={handleSubmit}
-        className="w-50 mx-auto bg-dark p-4 rounded text-light border border-secondary"
+        className="w-100 w-sm-75 w-md-50 mx-auto bg-dark p-4 rounded text-light border border-secondary"
       >
         <div className="mb-3">
           <label htmlFor="pelicula_id" className="form-label">
@@ -102,10 +102,10 @@ const FuncionCreate = () => {
           </select>
         </div>
 
-        <div className="d-flex justify-content-end">
+        <div className="d-flex flex-column flex-sm-row justify-content-end gap-2 mt-4">
           <button
             type="button"
-            className="btn btn-secondary me-2"
+            className="btn btn-secondary"
             onClick={() => navigate("/cartelera")}
           >
             Cancelar

@@ -50,15 +50,18 @@ const Funcion = () => {
 
   return (
     <div className="container mt-5">
-      <h2 className="text-light text-center mb-4">Detalle de la Función #{funcion.id}</h2>
-      <div className="table-responsive d-flex justify-content-center">
-        <table className="table table-dark table-bordered table-striped w-75 text-start">
+      <h2 className="text-light text-center mb-4">
+        Detalle de la Función #{funcion.id}
+      </h2>
+
+      <div className="table-responsive">
+        <table className="table table-dark table-bordered table-striped text-start w-100 w-sm-75 mx-auto">
           <thead>
             <tr>
               <th className="text-center" style={{ width: '10%' }}>ID</th>
               <th className="text-center" style={{ width: '35%' }}>Película</th>
               <th className="text-center" style={{ width: '35%' }}>Cine</th>
-              <th className="text-center" style={{ width: '15%' }}>Acciones</th>
+              <th className="text-center" style={{ width: '20%' }}>Acciones</th>
             </tr>
           </thead>
           <tbody>
@@ -67,7 +70,7 @@ const Funcion = () => {
               <td>{funcion.pelicula}</td>
               <td>{funcion.cine}</td>
               <td className="text-center">
-                <div className="d-flex flex-wrap justify-content-center gap-2">
+                <div className="d-flex flex-column flex-sm-row justify-content-center gap-2">
                   <button
                     onClick={() => navigate(`/cartelera/edit/${funcion.id}`)}
                     className="btn btn-sm btn-outline-warning"
