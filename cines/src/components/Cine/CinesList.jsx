@@ -47,8 +47,15 @@ const CinesList = () => {
     }
   };
 
-  if (loading) return <div className="text-center mt-5"><div className="spinner-border" role="status"></div></div>;
-  if (error) return <div className="alert alert-danger mt-3">Error: {error}</div>;
+  if (loading) return (
+    <div className="text-center mt-5">
+      <div className="spinner-border" role="status"></div>
+    </div>
+  );
+
+  if (error) return (
+    <div className="alert alert-danger mt-3">Error: {error}</div>
+  );
 
   return (
     <div className="container mt-5">
@@ -70,7 +77,7 @@ const CinesList = () => {
 
       {cines.length > 0 ? (
         <div className="table-responsive">
-          <table className="table table-dark table-striped table-bordered text-start">
+          <table className="table table-dark table-striped table-bordered text-start w-100">
             <thead>
               <tr>
                 <th className="text-center" style={{ width: '5%' }}>#</th>
@@ -88,23 +95,29 @@ const CinesList = () => {
                   <td>{cine.direccion}</td>
                   <td>{cine.ciudad}</td>
                   <td className="text-center">
-                    <Link to={`/cines/${cine.id}`} className="btn btn-sm btn-outline-primary me-2" title="Ver detalle">
-                      <i className="bi bi-eye"></i>
-                    </Link>
-                    <button
-                      onClick={() => navigate(`/cines/edit/${cine.id}`)}
-                      className="btn btn-sm btn-outline-warning me-2"
-                      title="Editar"
-                    >
-                      <i className="bi bi-pencil"></i>
-                    </button>
-                    <button
-                      onClick={() => handleDelete(cine.id)}
-                      className="btn btn-sm btn-outline-danger"
-                      title="Eliminar"
-                    >
-                      <i className="bi bi-trash"></i>
-                    </button>
+                    <div className="d-flex flex-sm-row flex-column justify-content-center align-items-center">
+                      <Link
+                        to={`/cines/${cine.id}`}
+                        className="btn btn-sm btn-outline-primary mb-2 mb-sm-0 me-sm-2"
+                        title="Ver detalle"
+                      >
+                        <i className="bi bi-eye"></i>
+                      </Link>
+                      <button
+                        onClick={() => navigate(`/cines/edit/${cine.id}`)}
+                        className="btn btn-sm btn-outline-warning mb-2 mb-sm-0 me-sm-2"
+                        title="Editar"
+                      >
+                        <i className="bi bi-pencil"></i>
+                      </button>
+                      <button
+                        onClick={() => handleDelete(cine.id)}
+                        className="btn btn-sm btn-outline-danger"
+                        title="Eliminar"
+                      >
+                        <i className="bi bi-trash"></i>
+                      </button>
+                    </div>
                   </td>
                 </tr>
               ))}

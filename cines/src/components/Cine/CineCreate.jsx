@@ -46,7 +46,7 @@ const CineCreate = () => {
     <div className="container mt-5">
       <h2 className="text-light text-center mb-4">Crear Nuevo Cine</h2>
       <form
-        className="w-50 mx-auto bg-dark p-4 rounded text-light border border-secondary"
+        className="w-100 w-md-50 mx-auto bg-dark p-4 rounded text-light border border-secondary"
         onSubmit={handleSubmit}
       >
         {error && <div className="alert alert-danger">{error}</div>}
@@ -91,10 +91,10 @@ const CineCreate = () => {
           />
         </div>
 
-        <div className="d-flex justify-content-end">
+        <div className="d-flex flex-sm-row flex-column justify-content-end">
           <button
             type="button"
-            className="btn btn-secondary me-2"
+            className="btn btn-secondary mb-2 mb-sm-0 me-sm-2"
             onClick={() => navigate('/cines')}
             disabled={loading}
           >

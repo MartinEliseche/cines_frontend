@@ -44,15 +44,26 @@ const Cine = () => {
     }
   };
 
-  if (loading) return <div className="text-center mt-5"><div className="spinner-border" role="status"></div></div>;
-  if (error) return <div className="alert alert-danger mt-3">Error: {error}</div>;
-  if (!cine) return <div className="alert alert-warning mt-3">Cine no encontrado</div>;
+  if (loading)
+    return (
+      <div className="text-center mt-5">
+        <div className="spinner-border" role="status"></div>
+      </div>
+    );
+  if (error)
+    return (
+      <div className="alert alert-danger mt-3">Error: {error}</div>
+    );
+  if (!cine)
+    return (
+      <div className="alert alert-warning mt-3">Cine no encontrado</div>
+    );
 
   return (
     <div className="container mt-5">
       <h2 className="text-light text-center mb-4">Detalle del Cine '{cine.nombre}'</h2>
       <div className="table-responsive d-flex justify-content-center">
-        <table className="table table-dark table-bordered table-striped w-75 text-start">
+        <table className="table table-dark table-bordered table-striped w-100 w-md-75 text-start">
           <thead>
             <tr>
               <th className="text-center">Nombre</th>
@@ -67,20 +78,22 @@ const Cine = () => {
               <td>{cine.direccion}</td>
               <td>{cine.ciudad}</td>
               <td className="text-center">
-                <button
-                  onClick={() => navigate(`/cines/edit/${cine.id}`)}
-                  className="btn btn-sm btn-outline-warning me-2"
-                  title="Editar"
-                >
-                  <i className="bi bi-pencil"></i>
-                </button>
-                <button
-                  onClick={handleDelete}
-                  className="btn btn-sm btn-outline-danger"
-                  title="Eliminar"
-                >
-                  <i className="bi bi-trash"></i>
-                </button>
+                <div className="d-flex flex-sm-row flex-column justify-content-center align-items-center">
+                  <button
+                    onClick={() => navigate(`/cines/edit/${cine.id}`)}
+                    className="btn btn-sm btn-outline-warning mb-2 mb-sm-0 me-sm-2"
+                    title="Editar"
+                  >
+                    <i className="bi bi-pencil"></i>
+                  </button>
+                  <button
+                    onClick={handleDelete}
+                    className="btn btn-sm btn-outline-danger"
+                    title="Eliminar"
+                  >
+                    <i className="bi bi-trash"></i>
+                  </button>
+                </div>
               </td>
             </tr>
           </tbody>
