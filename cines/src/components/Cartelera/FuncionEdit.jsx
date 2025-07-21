@@ -85,7 +85,7 @@ const FuncionEdit = () => {
     <div className="container mt-5">
       <h2 className="text-light text-center mb-4">Editar Función</h2>
       <form
-        className="w-100 w-sm-75 w-md-50 mx-auto bg-dark p-4 rounded text-light border border-secondary"
+        className="w-100 w-md-50 mx-auto bg-dark p-4 rounded text-light border border-secondary"
         onSubmit={handleSubmit}
       >
         <div className="mb-3">
@@ -120,7 +120,7 @@ const FuncionEdit = () => {
           </select>
         </div>
 
-        <div className="d-flex flex-column flex-sm-row justify-content-end gap-2">
+        <div className="d-flex flex-column flex-sm-row justify-content-end align-items-sm-center gap-2 mt-4">
           <button
             type="button"
             className="btn btn-secondary"
@@ -128,10 +128,7 @@ const FuncionEdit = () => {
           >
             <i className="bi bi-x-lg me-2"></i>Cancelar
           </button>
-          <button
-            type="submit"
-            className="btn btn-success"
-          >
+          <button type="submit" className="btn btn-success">
             <i className="bi bi-save me-2"></i>Guardar cambios
           </button>
         </div>
